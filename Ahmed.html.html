@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Camera</title>
+</head>
+<body>
+  <h1>افتح الكاميرا</h1>
+  <video id="video" autoplay playsinline style="width: 100%; max-width: 400px;"></video>
+  <script>
+    // طلب الوصول إلى الكاميرا
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        const videoElement = document.getElementById('video');
+        videoElement.srcObject = stream;
+      })
+      .catch(error => {
+        console.error("فشل الوصول إلى الكاميرا:", error);
+        alert("لم نتمكن من الوصول إلى الكاميرا. تأكد من منح الأذونات.");
+      });
+  </script>
+</body>
+</html>
